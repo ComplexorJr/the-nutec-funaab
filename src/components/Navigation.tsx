@@ -8,11 +8,14 @@ const navigationItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Features", href: "#features" },
-  { name: "Join Now", href: "#auth" },
   { name: "Contact", href: "#contact" },
 ];
 
-export function Navigation() {
+interface NavigationProps {
+  onOpenAuthModal: () => void;
+}
+
+export function Navigation({ onOpenAuthModal }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -30,7 +33,7 @@ export function Navigation() {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gray-800"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -101,13 +104,13 @@ export function Navigation() {
             <Button 
               variant="ghost" 
               className="text-muted-foreground hover:text-primary"
-              onClick={() => handleSmoothScroll('#auth')}
+              onClick={onOpenAuthModal}
             >
               Login
             </Button>
             <Button 
               className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-              onClick={() => handleSmoothScroll('#auth')}
+              onClick={onOpenAuthModal}
             >
               Sign Up
             </Button>
@@ -156,13 +159,19 @@ export function Navigation() {
                 <Button 
                   variant="ghost" 
                   className="w-full justify-start"
-                  onClick={() => handleSmoothScroll('#auth')}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenAuthModal();
+                  }}
                 >
                   Login
                 </Button>
                 <Button 
                   className="w-full bg-gradient-to-r from-primary to-accent"
-                  onClick={() => handleSmoothScroll('#auth')}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenAuthModal();
+                  }}
                 >
                   Sign Up
                 </Button>

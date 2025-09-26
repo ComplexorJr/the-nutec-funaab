@@ -1,29 +1,43 @@
+import { useState } from "react";
 import { Navigation } from "./Navigation";
 import { ScrollProgress } from "./ScrollProgress";
 import { HeroSection } from "./HeroSection";
 import { AboutSection } from "./AboutSection";
 import { FeaturesOverview } from "./FeaturesOverview";
-import { AuthSection } from "./AuthSection";
 import { ContactSection } from "./ContactSection";
 import { Footer } from "./Footer";
+import { AuthModal } from "./AuthModal";
 
 interface LandingPageProps {
   onLogin: (userData: any) => void;
 }
 
 export function LandingPage({ onLogin }: LandingPageProps) {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const handleOpenAuthModal = () => {
+    setIsAuthModalOpen(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setIsAuthModalOpen(false);
+  };
   return (
     <>
       <ScrollProgress />
-      <Navigation onLogin={onLogin} />
+      <Navigation onOpenAuthModal={handleOpenAuthModal} />
       <main>
-        <HeroSection onLogin={onLogin} />
+        <HeroSection onOpenAuthModal={handleOpenAuthModal} />
         <AboutSection />
         <FeaturesOverview />
-        <AuthSection onLogin={onLogin} />
         <ContactSection />
       </main>
       <Footer />
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={handleCloseAuthModal} 
+        initialForm="signin"
+      />
     </>
   );
 }

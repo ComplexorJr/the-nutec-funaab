@@ -4,7 +4,11 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 import { AnimationWrapper, floatingAnimation, buttonHover, buttonTap } from "./AnimationWrapper";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onOpenAuthModal: () => void;
+}
+
+export function HeroSection({ onOpenAuthModal }: HeroSectionProps) {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background with overlay */}
@@ -103,7 +107,7 @@ export function HeroSection() {
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 group"
-                    onClick={() => document.getElementById('auth')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={onOpenAuthModal}
                   >
                     Join Nutec Today
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
