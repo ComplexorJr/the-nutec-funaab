@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { Navigation } from "./components/Navigation";
 import { ScrollProgress } from "./components/ScrollProgress";
