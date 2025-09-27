@@ -1,5 +1,5 @@
 {
-      "homepage": "https://complexorjr.github.io/nutec-website"
+      "homepage": "https://complexorjr.github.io/the-nutec-funaab",
       "name": "nutec-website-sitemap",
       "version": "0.1.0",
       "private": true,
@@ -64,7 +64,7 @@
       "scripts": {
             "dev": "vite",
             "build": "vite build",
-            "build:gh": "cross-env VITE_BASE=/nutec-website/ vite build",
+            "build:gh": "cross-env VITE_BASE=/the-nutec-funaab/ vite build",
             "preview": "vite preview",
             "predeploy": "npm run build:gh",
             "deploy": "gh-pages -d dist"
