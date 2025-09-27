@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import react from '@vitejs/plugin-react';
 import path from 'path';
 
 // If VITE_BASE is set (in build:gh script), use it. Otherwise default to "/"
 const basePath = process.env.VITE_BASE || '/';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    jsxRuntime: 'automatic'
+  })],
   base: basePath, // ✅ Correct base handling
 
   resolve: {
@@ -23,7 +25,7 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'vendor.react';
+            if (id.includes('react') || id.includes('react-dom')) return 'vendor.react';
             return 'vendor';
           }
         },
