@@ -15,6 +15,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+    // Ensure only one copy of React gets bundled (prevents createContext being undefined)
+    dedupe: ['react', 'react-dom']
   },
 
   build: {
